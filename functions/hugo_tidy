@@ -1,0 +1,7 @@
+function {
+    [[ -f go.mod ]] || return
+
+    sed -i '' 's,^replace,// replace,' go.mod
+    hugo mod get -u && hugo mod tidy
+    sed -i '' 's,^// replace,replace,' go.mod
+}
